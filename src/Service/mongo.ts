@@ -7,7 +7,7 @@ mongoose.connection.on('close', () => {
   });
 
 export const dbConnect = async () => {
-    const dbConnection = process.env.testDbConnection;
+    const dbConnection = process.env.dbConnection;
     if(!dbConnection){
         throw new Error('Database connection string is not provided')
     }

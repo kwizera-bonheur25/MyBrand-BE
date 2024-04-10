@@ -1,0 +1,110 @@
+
+/**
+ * @swagger
+ * /api/blogs/{id}/comments:
+ *   post:
+ *     summary: Add new comments
+ *     tags:
+ *       - comments
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: comments ID to update
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               content:
+ *                 type: string  
+ *     responses:
+ *       200:
+ *         description: comments updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "200"
+ *                 message:
+ *                   type: string
+ *                   example: "comments  updated successfully"
+ *       404:
+ *         description:  comments not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "404"
+ *                 message:
+ *                   type: string
+ *                   example: " comments not found"
+ */
+
+
+//Delete a Comment using Id
+
+/**
+ * @swagger
+ * /api/blogs/{id}/comments:
+ *   delete:
+ *     summary: Delete a comments by ID
+ *     tags:
+ *       - comments
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: comments ID to delete
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: comments comments deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "200"
+ *                 message:
+ *                   type: string
+ *                   example: "comments comments deleted successfully"
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     bogImage:
+ *                       type: string
+ *                       example: http://example.com/comments_image.jpg
+ *                     commentsTitle:
+ *                       type: string
+ *                       example: "Title of the comments"
+ *                     commentsContent:
+ *                       type: string
+ *                       example: "Content of the comments comments"
+ *       404:
+ *         description: comments not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "404"
+ *                 message:
+ *                   type: string
+ *                   example: "comments not found"
+ */

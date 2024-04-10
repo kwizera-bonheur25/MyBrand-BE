@@ -1,0 +1,36 @@
+name: Build
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18]
+    steps:
+      - uses: actions/checkout@v4
+      - name: use node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - name: create env file
+        run: |
+          cat >.env <<EOL
+          testDbConnection=${{ secrets.TESTDBCONNECTION }}
+          PORT=${{ secrets.PORT }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          PASSKEY=${{ secrets.PASSKEY }}
+          CLOUD_NAME=${{ secrets.CLOUD_NAME }}
+          EXPIRE_DATE=${{secrets.EXPIRE_DATE}}
+          API_KEY=${{secrets.API_KEY}}
+          EOL
+      - run: npm test -- --watchAll=false
+      - run: npm run test:ci
+      - run: npx update-badge
+      - name: Fail job if any previous step failed
+        if: ${{ failure() }}
+        run: exit 1

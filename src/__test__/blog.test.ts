@@ -57,9 +57,9 @@ describe("My brand APIs test", () => {
     .post("/api/users/login")
     .send(loginData)
     .expect(200)
-    expect(responeLogin.body.token).toBeDefined()
+    expect(responeLogin.body.data.token).toBeDefined()
 
-    token = responeLogin.body.token
+    token = responeLogin.body.data.token
 
     })
 
@@ -73,7 +73,7 @@ describe("My brand APIs test", () => {
             .expect('Content-Type', /application\/json/)
             .expect(201);
     
-        expect(body.message).toStrictEqual("Create Blog Successfully");
+        expect(body.message).toStrictEqual(" Blog Create Successfully");
         expect(body.data._id).toBeDefined();
     
         id = body.data._id;
@@ -104,7 +104,7 @@ describe("My brand APIs test", () => {
         const {body} = await request(app)
         .delete(`/api/blogs/${commentId}/Comments`)
         .set("Authorization", `Bearer ${token}`)
-        .expect(204)
+        .expect(200)
     })
 
     

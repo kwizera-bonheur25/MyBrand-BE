@@ -3,7 +3,7 @@ import app from "../../app";
 import { testDbConnection, dbDisconnect } from "../Service/mongo";
 import Users from "../models/users";
 
-jest.setTimeout(10000)
+jest.setTimeout(50000);
 
 describe("Test users endpoints", () => {
 

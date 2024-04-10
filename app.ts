@@ -44,6 +44,8 @@ const options = {
 
 app.use("/api", router)
 
+//starting the server
+
 app.use("/", (req,res) => {
     return res.status(200).json({
         status:200,
